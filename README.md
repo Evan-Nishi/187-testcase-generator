@@ -16,7 +16,7 @@ Writing type is either t for typed, m for messy, n for neat
 For example 
 `7-8-t.png`
 
-It will output in the [./out](./out/) directory in the following format: `./out/<unit>/<subchapter>-<writing type>-r<deg rotated>-b<percent brightness>.<file extension>`
+It will output in the [./out](./out/) directory in the following format: `./out/<unit>/<subchapter>-<writing type>-r<deg rotated>-b<percent brightness/contrast>.<file extension>`
 
 
 NOTE: if you are on windows you will need to change the paths format.

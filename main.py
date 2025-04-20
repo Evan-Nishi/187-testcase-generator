@@ -26,11 +26,20 @@ def rotate_img(img, orientation):
     return [deg, img.rotate(deg, expand=True)]
 
 
-#simulate reduced brightness
+
+# Simulate reduced brightness and contrast with the same brightness factor
 def reduce_bright(img):
     enhancer = ImageEnhance.Brightness(img)
     brightness_factor = random.randint(3, 8) * 0.1
-    return [brightness_factor, enhancer.enhance(brightness_factor)]
+    
+    img = enhancer.enhance(brightness_factor)
+
+    contraster = ImageEnhance.Contrast(img)
+    
+    img = contraster.enhance(brightness_factor) 
+    
+    return [brightness_factor, img]
+
 
 
 
