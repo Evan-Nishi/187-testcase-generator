@@ -15,15 +15,15 @@ def rotate_img(img, orientation):
     img - <PIL.Image>: the image object to be rotated
     orientation - <int>: 0 for straight, 1 for tilted, 2 for extreme
     '''
-    if orientation == 0:
+    if orientation == 'S':
         deg = random.randint(-30,30)
        
-    elif orientation == 1: #31 60
+    elif orientation == 'M': #31 60
         deg = random.choice([random.randint(31,60), random.randint(-60,-31)])
-    elif orientation == 2:
+    elif orientation == 'L':
         deg = random.choice([random.randint(61,150), random.randint(-150,-61)])
     
-    return [deg, img.rotate(deg, expand=True)]
+    return [orientation, img.rotate(deg, expand=True)]
 
 
 
@@ -37,6 +37,7 @@ def reduce_bright(img):
     contraster = ImageEnhance.Contrast(img)
     
     img = contraster.enhance(brightness_factor) 
+    
     
     return [brightness_factor, img]
 
@@ -68,17 +69,17 @@ for f in files:
             os.makedirs(target_path, exist_ok=True)
 
             rot_images = [
-                rotate_img(img, 0),
-                rotate_img(img, 1),
-                rotate_img(img, 2)
+                rotate_img(img, 'S'),
+                rotate_img(img, 'M'),
+                rotate_img(img, 'L')
             ]
 
             for r_i in rot_images:
-                r_i[1].save(f'{target_path}/{tokens[1]}-r{r_i[0]}-b100.{tokens[-1]}')
+                r_i[1].save(f'{target_path}/{tokens[1]}-{r_i[0]}N.{tokens[-1]}')
 
                 b_i = reduce_bright(img)
 
-                b_i[1].save(f'{target_path}/{tokens[1]}-r{r_i[0]}-b{int(b_i[0] * 100)}.{tokens[-1]}')
+                b_i[1].save(f'{target_path}/{tokens[1]}-{r_i[0]}P.{tokens[-1]}')
                 
 
 
